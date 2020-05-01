@@ -25,9 +25,10 @@ if (cities !== null && cities.length !== 0) {
 
   addToFavorites.classList.add("activ-bnt");
   addToFavorites.disabled = true;
-} else {
-  btnNext.style.visibility = "hidden";
-  btnPrev.style.visibility = "hidden";
+  if (cities.length <= 4) {
+    btnNext.style.visibility = "hidden";
+    btnPrev.style.visibility = "hidden";
+  }
 }
 
 if (cities === null || cities.length === 0) {
@@ -43,12 +44,15 @@ addToFavorites.addEventListener("click", handlerClickButton);
 
 function handlerClickButton() {
   const city = OpenGalleryImg.query;
-  console.log(city);
   if (city) {
     setLocalStorageCity(city);
     addToFavorites.classList.add("activ-bnt");
     addToFavorites.disabled = true;
     addToFavorites.classList.remove("inactiv-bnt");
+  }
+  const cities = JSON.parse(localStorage.getItem("cities"));
+  if (cities.length > 4) {
+    console.log(cities.length);
     btnNext.style.visibility = "visible";
     btnPrev.style.visibility = "visible";
   }

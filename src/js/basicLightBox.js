@@ -30,7 +30,7 @@ function isOpenModalHandle(e) {
         showModal.close();
       }
       const cities = JSON.parse(localStorage.getItem("cities"));
-      if (!cities.length) {
+      if (cities.length <= 4) {
         btnNext.style.visibility = "hidden";
         btnPrev.style.visibility = "hidden";
         addToFavorites.classList.remove("activ-bnt");
